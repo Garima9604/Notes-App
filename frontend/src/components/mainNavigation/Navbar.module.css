@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    color: #DBD3E8;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0 0px 5px #DBD3E8;
+}
+
+.navbar div {
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar div a {
+    color: #DBD3E8;
+    text-decoration: none;
+    padding: 10px;
+    padding-top: 3.5%;
+    font-size: 1.3rem;
+}
+
+.navbar h1 {
+    padding: 10px;
+}
