@@ -7,7 +7,7 @@ const Note = require("../models/Note");
 router.get("/", async (req, res) => {
   try {
     let allNotes = await Note.find({});
-    console.log("Backend AllNotes : ", allNotes);
+    // console.log("Backend AllNotes : ", allNotes);
     res.status(200).json(allNotes);
   } catch (e) {
     res.status(400).json({ msg: "Error in Home Backend" });

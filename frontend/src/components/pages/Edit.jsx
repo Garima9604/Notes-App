@@ -15,7 +15,7 @@ function Edit(props) {
 
     async function editNotes() {
         const resp = await axios.get(`http://localhost:8080/note/${params.id}`);
-        console.log("Frontend Resp Edit.jsx : ", resp);
+        // console.log("Frontend Resp Edit.jsx : ", resp);
         setName(resp.data.title);
         setDescription(resp.data.desc);
     }
@@ -28,7 +28,7 @@ function Edit(props) {
                 title: name,
                 desc: description
             });
-            console.log("Frontendin axios.post Edit.jsx : ", resp);
+            // console.log("Frontendin axios.post Edit.jsx : ", resp);
             navigate('/');
         } catch (e) {
             console.log("Error in Editing Notes in Frontend : ", e);

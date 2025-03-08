@@ -1,33 +1,37 @@
 const express = require("express");
-const router = express();
+const router = express.Router();
 const User = require("../models/User");
 const passport = require("passport");
 
+// Registration Route
 router.post("/register", async (req, res) => {
   try {
-    let { username, email, password } = req.body;
-    console.log("Backend Register Page Details : ", {
-      username,
-      email,
-      password,
+    const { username, email, password } = req.body;
+    let user = new User({ username, email, password });
+    await user.save();
+    req.login(user, (err) => {
+      if (err)
+        return res
+          .status(400)
+          .json({ msg: "Login failed after registration." });
+      return res.status(200).json({ msg: "Registration successful" });
     });
-    let existUser = await User.findOne({ email });
-    if (existUser) {
-      return res.status(400).json({ message: "Email already exists." });
-    } else {
-      let user = new User({ username, email });
-      let newUser = await User.register(user, password);
-      await newUser.save();
-      req.login(newUser, function (err) {
-        if (err) {
-          return next(err);
-        }
-        return res.status(200).json({ msg: "account has been created" });
-      });
-    }
-  } catch (error) {
-    return res.status(400).json({ msg: "something went wrong" });
+  } catch (err) {
+    return res.status(400).json({ msg: "Registration failed." });
   }
+});
+
+// Login Route
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).json({ msg: "Login successful", user: req.user });
+});
+
+// Logout Route
+router.post("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) return res.status(400).json({ msg: "Logout failed." });
+    return res.status(200).json({ msg: "Logged out successfully" });
+  });
 });
 
 module.exports = router;

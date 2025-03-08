@@ -16,7 +16,7 @@ function New() {
         const desc = descInpRef.current.value;
         try {
             let resp = await axios.post('http://localhost:8080/new', { title, desc });
-            console.log("Axios Resp from NewQuote.jsx : ", resp);
+            // console.log("Axios Resp from NewQuote.jsx : ", resp);
             navigate('/');
         } catch (error) {
             console.log("Cannot add New Note at this moment", error);

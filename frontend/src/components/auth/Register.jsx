@@ -19,7 +19,7 @@ function Register() {
         let password = passwordInpRef.current.value;
         try {
             let resp = axios.post('http://localhost:8080/register', { username, email, password })
-            console.log("Axios Resp : ", resp);
+            console.log("Axios Resp from register.jsx : ", resp);
             navigate('/');
         } catch (error) {
             console.log("Cannot register at this moment : ", error);

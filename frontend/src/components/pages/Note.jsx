@@ -33,7 +33,7 @@ function Note(props) {
     const deleteNote = async (id) => {
         try {
             const resp = await axios.delete(`http://localhost:8080/delete/${id}`);
-            console.log("Deleting a note from frontend : ", resp);
+            // console.log("Deleting a note from frontend : ", resp);
             props.onDelete(id);
             navigate('/');
         } catch (e) {

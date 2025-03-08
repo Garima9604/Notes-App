@@ -9,10 +9,10 @@ function Home() {
 
     async function getNotes() {
         try {
-            console.log("Request from axios of fetching all notes");
+            // console.log("Request from axios of fetching all notes");
             let resp = await axios.get('http://localhost:8080/');
             let data = resp.data;
-            console.log("From Home.jsx:", data);
+            // console.log("From Home.jsx:", data);
             setNotes(data);
         } catch (error) {
             console.error("Error fetching notes:", error);
